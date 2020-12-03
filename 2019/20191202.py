@@ -35,7 +35,7 @@ def main():
 	targetverb = 0
 
 	for noun in range(0,99):
-		for verb in range(0,90):
+		for verb in range(0,99):
 			working_program = setupProgram(working_program,noun,verb)
 			working_program = processProgram(working_program)
 			if working_program[0] == 19690720:
