@@ -1,12 +1,9 @@
-import pandas as pd 
-
 def readfile(filepath):
 	array2D = []
 	f = open(filepath, "r")
 	for line in f:
 		lineArray = []
-		for i in range(0,80):
-			for character in line:
+		for character in line:
 				if character != '\n':
 					lineArray.append(character)
 		array2D.append(lineArray)
@@ -16,13 +13,15 @@ def countTrees(tbmap,r,d):
 	treecount = 0
 	rowpointer = 0
 	colpointer = 0
-	while rowpointer <= len(tbmap)-1 and colpointer <= len(tbmap[rowpointer]):
-		if colpointer <= len(tbmap[rowpointer]):
-			if tbmap[rowpointer][colpointer] == "#":
-				treecount+=1
+	while rowpointer <= len(tbmap)-1:
+		if colpointer > len(tbmap[rowpointer])-1:
+			colpointer = colpointer - (len(tbmap[rowpointer]))
+		#print(colpointer)
+		if tbmap[rowpointer][colpointer] == "#":
+			treecount+=1
 		colpointer = colpointer + r
 		rowpointer = rowpointer + d
-	print("Trees:" + str(treecount))
+		
 	return treecount
 
 def main():
