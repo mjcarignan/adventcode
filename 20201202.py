@@ -16,17 +16,17 @@ def main():
 	new = data.test.str.split(":", n = 1, expand = True)
 	data.test = new[0]
 	print("File read in:  %s milliseconds" % math.trunc((time.time() - start_time)*1000))
-#select 
-#	goodpw = data[data.pw.str.count('x') >= 1 ]
-	count=0
+
+#count good passwords 
+	goodpwcount=0
 	for index, row in data.iterrows():
 		if (
 			(row.pw[row.pos1-1] == row.test) & (row.pw[row.pos2-1] != row.test)
 			|
 			(row.pw[row.pos1-1] != row.test) & (row.pw[row.pos2-1] == row.test)
 			):
-			count+=1
-	print ("Valid Passwords: " + str(count))
+			goodpwcount+=1
+	print ("Valid Passwords: " + str(goodpwcount))
 # count rows where test appears in pw >= min and <= max 	
 
 
