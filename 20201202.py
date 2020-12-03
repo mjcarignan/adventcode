@@ -5,11 +5,10 @@ import pandas as pd
 
 def main():
 #import data
-
 	data = pd.read_csv('20201202_data' , header=None, sep=' ')
 	data.columns = ['rule' , 'test' , 'pw']
 	
-	#clean data
+#clean data
 	new = data.rule.str.split("-", n = 1, expand = True)
 	data['pos1'] = new[0].astype(int)
 	data['pos2']= new[1].astype(int)
@@ -27,14 +26,9 @@ def main():
 			):
 			goodpwcount+=1
 	print ("Valid Passwords: " + str(goodpwcount))
-# count rows where test appears in pw >= min and <= max 	
-
-
-#		if (row.pw.count(row.test) >= row.minO) & (row.pw.count(row.test) <= row.maxO):
-#			count+=1
 
 
 import time
-start_time = time.time()
+start_time = time.time() 
 main()
 print("Total time: %s milliseconds" % math.trunc((time.time() - start_time)*1000))
