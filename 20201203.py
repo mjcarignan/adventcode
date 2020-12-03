@@ -25,7 +25,6 @@ def countTrees(tbmap,r,d):
 	return treecount
 
 def main():
-
 	tbmap = readfile("20201203_data")
 	slope1 = countTrees(tbmap,1,1) 
 	slope2 = countTrees(tbmap,3,1)
