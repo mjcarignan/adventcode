@@ -9,3 +9,5 @@ def openFile(file):
 def convertData (file):
 	dataList = file.splitlines()
 	return(dataList)
+
+
