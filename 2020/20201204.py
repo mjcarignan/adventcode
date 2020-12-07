@@ -50,19 +50,36 @@ def main():
 		]
 
 	print("Part 1 Valid passwords: " + str(len(notnull)))
+<<<<<<< HEAD:2020/20201204.py
 
+=======
+	#pd.set_option('display.max_rows', None)
+	#print(notnull)
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 # Part 2
 	valid = notnull.loc[
 		(notnull['byr'].astype(int) >= 1920) & (notnull['byr'].astype(int) <= 2002) &
 		(notnull['iyr'].astype(int) >= 2010) & (notnull['iyr'].astype(int) <= 2020) &
 		(notnull['eyr'].astype(int) >= 2020) & (notnull['eyr'].astype(int) <= 2030) &
+<<<<<<< HEAD:2020/20201204.py
 		((notnull['hgt'].str.match("[5][9]|[6][0-6]|[6-7][0-6]in") ) | (notnull['hgt'].str.match("\d+cm")) ) & 
 		(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) & (notnull['hcl'].str.contains('#[a-f0-9]{6,6}')) &
+=======
+		(notnull['hgt'].str.contains("cm") | (notnull['hgt'].str.contains("in"))) &
+		(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) &
+		
+		#(notnull['hgt'].str.contains("[1][5-9][0-3]cm") | (notnull['hgt'].str.contains("[5][9]|[6][0-6]|[6-7][0-6]in")))  
+		#(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) & (notnull['hcl'].str.contains("[0-9]" or "[a-f]"))&
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 		(notnull['ecl'].isin(['amb','blu','brn','gry','grn','hzl','oth'])) &
-		(notnull['pid'].str.contains('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')) & (notnull['pid'].str.len() == 9) 
+		(notnull['pid'].str.contains("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")) & (notnull['pid'].str.len() == 9) 
 		]
 	print("Part 2 Valid passwords: " + str(len(valid)))
 	
+<<<<<<< HEAD:2020/20201204.py
+=======
+	print(valid)
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 import time
 start_time = time.time() 
 main()
