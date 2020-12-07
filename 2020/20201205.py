@@ -10,10 +10,11 @@ def getSeatMap(numrows,seatsperrow):
 		plane.append(row)
 	return plane
 
+#get data
 def readFile(file):
-	file =[]
-	
-	return
+	with open(file) as file_object:
+		filedata = file_object.read().splitlines()
+		return(filedata)
 
 def main():
 	#define plane
@@ -23,6 +24,11 @@ def main():
 
 	#fill seats based on boarding passes
 	boardingpasses = readFile('20201205_data')
+
+	for i in range(len(boardingpasses)):
+		#get row
+		
+		break
 
 	dfplane.loc[0,0] = "Filled"
 	print(dfplane)
