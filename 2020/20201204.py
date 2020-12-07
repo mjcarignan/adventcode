@@ -51,8 +51,11 @@ def main():
 
 	print("Part 1 Valid passwords: " + str(len(notnull)))
 <<<<<<< HEAD:2020/20201204.py
+<<<<<<< HEAD:2020/20201204.py
 
 =======
+=======
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 	#pd.set_option('display.max_rows', None)
 	#print(notnull)
 >>>>>>> parent of 16f4965... completed day 4:20201204.py
@@ -62,9 +65,12 @@ def main():
 		(notnull['iyr'].astype(int) >= 2010) & (notnull['iyr'].astype(int) <= 2020) &
 		(notnull['eyr'].astype(int) >= 2020) & (notnull['eyr'].astype(int) <= 2030) &
 <<<<<<< HEAD:2020/20201204.py
+<<<<<<< HEAD:2020/20201204.py
 		((notnull['hgt'].str.match("[5][9]|[6][0-6]|[6-7][0-6]in") ) | (notnull['hgt'].str.match("\d+cm")) ) & 
 		(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) & (notnull['hcl'].str.contains('#[a-f0-9]{6,6}')) &
 =======
+=======
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 		(notnull['hgt'].str.contains("cm") | (notnull['hgt'].str.contains("in"))) &
 		(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) &
 		
@@ -77,6 +83,10 @@ def main():
 	print("Part 2 Valid passwords: " + str(len(valid)))
 	
 <<<<<<< HEAD:2020/20201204.py
+<<<<<<< HEAD:2020/20201204.py
+=======
+	print(valid)
+>>>>>>> parent of 16f4965... completed day 4:20201204.py
 =======
 	print(valid)
 >>>>>>> parent of 16f4965... completed day 4:20201204.py
