@@ -31,7 +31,6 @@ def movetodf (data, required):
 	cred_df = pd.DataFrame(columns=required)
 	for i in range(len(data)):
 		cred_df = cred_df.append(explodeList(data[i],required))
-	#print(cred_df)
 	return cred_df
 
 def main():
@@ -51,9 +50,7 @@ def main():
 		]
 
 	print("Part 1 Valid passwords: " + str(len(notnull)))
-	pd.set_option('display.max_rows', None)
 
-	#print(notnull)
 # Part 2
 	valid = notnull.loc[
 		(notnull['byr'].astype(int) >= 1920) & (notnull['byr'].astype(int) <= 2002) &
@@ -61,15 +58,11 @@ def main():
 		(notnull['eyr'].astype(int) >= 2020) & (notnull['eyr'].astype(int) <= 2030) &
 		((notnull['hgt'].str.match("[5][9]|[6][0-6]|[6-7][0-6]in") ) | (notnull['hgt'].str.match("\d+cm")) ) & 
 		(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) & (notnull['hcl'].str.contains('#[a-f0-9]{6,6}')) &
-		
-		#(notnull['hgt'].str.contains("[1][5-9][0-3]cm") | (notnull['hgt'].str.contains("[5][9]|[6][0-6]|[6-7][0-6]in")))  
-		#(notnull['hcl'].str[0] == '#') & (notnull['hcl'].str.len() == 7) & (notnull['hcl'].str.contains("[0-9]" or "[a-f]"))&
 		(notnull['ecl'].isin(['amb','blu','brn','gry','grn','hzl','oth'])) &
 		(notnull['pid'].str.contains('[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$')) & (notnull['pid'].str.len() == 9) 
 		]
 	print("Part 2 Valid passwords: " + str(len(valid)))
 	
-	#print(valid)
 import time
 start_time = time.time() 
 main()
