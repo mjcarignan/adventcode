@@ -24,6 +24,7 @@ def readFile(file):
 
 	#move to dataframe
 	customs_rulesdf = pd.DataFrame(customs_rules, columns=['parentbag','child','child_count'])
+	#print(customs_rulesdf)
 	return customs_rulesdf
 
 def findAllParents(querydf, sourcedf):
@@ -42,18 +43,18 @@ def findAllParents(querydf, sourcedf):
 	#print(count)
 	return all_parents
 
-def findAllParents_count(querydf, sourcedf, count):
-	#all_parents = pd.DataFrame(columns=['parentbag','child','child_count'])
-	if len(querydf) == 0:
-		return count
-	else: 
-		for i in range(len(querydf)):
-			count+=len(sourcedf.loc[sourcedf['child'] == querydf.iloc[i]['parentbag']])
-			count+=findAllParents_count(sourcedf.loc[sourcedf['child'] == querydf.iloc[i]['parentbag']], sourcedf, count)
-			print(count)
-		#print(all_parents)
+def findAllParents_count(querydf, sourcedf):
+	global count
+	#print(querydf)
+	for i in range(len(querydf)):
+		if len(sourcedf.loc[sourcedf['child'] == querydf.iloc[i]['parentbag']]) == 0:
+			if querydf.iloc[i]['parentbag'] not in count:
+				count.append(querydf.iloc[i]['parentbag'])
+		else:
+			count.append(findAllParents_count(sourcedf.loc[sourcedf['child'] == querydf.iloc[i]['parentbag']], sourcedf))
+	#print(count)
 	return count
-
+	
 
 def main():
 	
@@ -63,18 +64,22 @@ def main():
 
 	#Part 1 : How many outer bag colors can eventual contain a "Shiny gold bag"
 	startingdf = customs_rulesdf.loc[customs_rulesdf['child'] == "shiny gold"]
+	#startingdf= pd.DataFrame([{"parentbag" : "shiny gold"}])
 	collected_parents = pd.DataFrame(columns=['parentbag','child','child_count'])
 	#all_parents = pd.DataFrame(columns=['parentbag','child','child_count'])
 	#for i in range(len(startingdf)):
 	#all_parents = findAllParents(startingdf, customs_rulesdf)
-	count = 0
-	count += findAllParents_count(startingdf, customs_rulesdf, count)
+	count = findAllParents_count(startingdf, customs_rulesdf)
+
 	#all_parents = pd.concat([all_parents, startingdf])
 	#print(all_parents)
 	#print("Count: " + str(len(all_parents)))
-	print("Count: " + str(count))
+	for i in range(len(count)):
+		print(count[i])
 
+	print("Count: " + str(len(count)))
 
+count = []
 import time
 start_time = time.time() 
 main()
