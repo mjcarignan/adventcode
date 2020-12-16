@@ -36,3 +36,19 @@ for t in range(len(tickets_list)):
 			invalid+=tickets_list[t][i]
 print(invalid)
 
+#Part 2
+
+invalid_tickets = []
+
+#find index of invalid tickets
+for t in range(len(tickets_list)):
+	for i in range(len(tickets_list[t])):
+		if tickets_list[t][i] not in valid_range:
+			invalid_tickets.append(t)
+
+#drop invalid tickets
+for index in sorted(invalid_tickets, reverse=True):
+    del tickets_list[index]
+
+
+
