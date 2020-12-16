@@ -42,9 +42,9 @@ print("Part 1: " + str(invalid))
 
 #Part 2
 
+#find index of invalid tickets
 invalid_tickets = []
 
-#find index of invalid tickets
 for t in range(len(tickets_list)):
 	for i in range(len(tickets_list[t])):
 		if tickets_list[t][i] not in valid_range:
@@ -53,8 +53,6 @@ for t in range(len(tickets_list)):
 #drop invalid tickets
 for index in sorted(invalid_tickets, reverse=True):
     del tickets_list[index]
-
-print()
 
 # change each rule range to a list of values for that concatinated set of ranges.  
 # Should have done this earlier.  <facepalm>
@@ -65,17 +63,54 @@ for k,v in rules.items():
 #only one range set will be valid for all values in the column
 compare_values = []
 new_rules = {}
-count = 20
-for i in range(20):
+count = len(rules)
+column = 0
+
+for i in range(count):
 	for t in range(len(tickets_list)):
 		compare_values.append(tickets_list[t][i])
-		for k,v in rules.items():
-			# print(set(compare_values) <= set(v))
-			# print(k)
-			# print(v)
-			if(set(compare_values) <= set(v)):
-				new_rules[t] = (k)
+	
+	column_comparison = []
+	for k,v in rules.items():
+		if(set(compare_values) <= set(v)):
+			column_comparison.append(k)	
+	
+	new_rules[column] = column_comparison
+	column+=1
+	compare_values = []
 
-print(new_rules)
 
 
+#sorting the rules by length
+new_new_rules = {}
+
+for i in range(count):
+	for item in new_rules:
+		if i+1 == len(new_rules[item]):
+			new_new_rules[item] = new_rules[item] 
+
+inter = []
+
+#id columns through process of elimination
+for k,v in new_new_rules.items():
+	set1 = set(v)
+	set2 = set(inter)
+	res = list(set1 - set2)
+	new_new_rules[k] = res
+	inter.append(res[0])
+
+
+#update new rules
+for k,v in new_new_rules.items():
+	new_rules[k] = new_new_rules[k]
+
+
+myticket = [127,83,79,197,157,67,71,131,97,193,181,191,163,61,53,89,59,137,73,167]
+
+res = 1
+
+for k,v in new_new_rules.items():
+	if 'departure' in v[0]:
+		res = res * myticket[int(k)]
+
+print("Part 2: " + str(res))
