@@ -19,17 +19,21 @@ file = open('20201216_data', 'r')
 tickets_list = [list(map(int,ticket)) for ticket in csv.reader(file, delimiter=',')]
 file.close()
 
-invalid = 0
+
 
 
 #Part 1
+#contatinate ranges of all rules
 from itertools import chain
 valid_range = range(0)
 for k,v in rules.items():
 	valid_range = chain(valid_range, v[0],v[1])
 
+#move all range to list... not sure how to make this part of the above block of code.
 valid_range = (list(valid_range))
 
+#add up values on tickets that match no rule
+invalid = 0
 for t in range(len(tickets_list)):
 	for i in range(len(tickets_list[t])):
 		if tickets_list[t][i] not in valid_range:
