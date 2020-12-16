@@ -54,7 +54,28 @@ for t in range(len(tickets_list)):
 for index in sorted(invalid_tickets, reverse=True):
     del tickets_list[index]
 
+print()
+
 # change each rule range to a list of values for that concatinated set of ranges.  
 # Should have done this earlier.  <facepalm>
 for k,v in rules.items():
 	rules[k] = list(chain(v[0],v[1]))
+
+#pull each "column" and compare it to each range set
+#only one range set will be valid for all values in the column
+compare_values = []
+new_rules = {}
+count = 20
+for i in range(20):
+	for t in range(len(tickets_list)):
+		compare_values.append(tickets_list[t][i])
+		for k,v in rules.items():
+			# print(set(compare_values) <= set(v))
+			# print(k)
+			# print(v)
+			if(set(compare_values) <= set(v)):
+				new_rules[t] = (k)
+
+print(new_rules)
+
+
