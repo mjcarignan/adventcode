@@ -20,14 +20,19 @@ tickets_list = [list(map(int,ticket)) for ticket in csv.reader(file, delimiter='
 file.close()
 
 
-
-
 #Part 1
-#contatinate ranges of all rules
+
 from itertools import chain
+
+# change each rule range to a list of values for that concatinated set of ranges.  
+# Should have done this earlier.  <facepalm>
+for k,v in rules.items():
+	rules[k] = list(chain(v[0],v[1]))
+
+#contatinate ranges of all rules
 valid_range = range(0)
 for k,v in rules.items():
-	valid_range = chain(valid_range, v[0],v[1])
+	valid_range = chain(valid_range, v)
 
 #move all range to list... not sure how to make this part of the above block of code.
 valid_range = (list(valid_range))
@@ -45,6 +50,7 @@ print("Part 1: " + str(invalid))
 #find index of invalid tickets
 invalid_tickets = []
 
+#get index of invalid tickets
 for t in range(len(tickets_list)):
 	for i in range(len(tickets_list[t])):
 		if tickets_list[t][i] not in valid_range:
@@ -54,13 +60,7 @@ for t in range(len(tickets_list)):
 for index in sorted(invalid_tickets, reverse=True):
     del tickets_list[index]
 
-# change each rule range to a list of values for that concatinated set of ranges.  
-# Should have done this earlier.  <facepalm>
-for k,v in rules.items():
-	rules[k] = list(chain(v[0],v[1]))
-
 #pull each "column" and compare it to each range set
-#only one range set will be valid for all values in the column
 compare_values = []
 new_rules = {}
 count = len(rules)
@@ -71,6 +71,7 @@ for i in range(count):
 		compare_values.append(tickets_list[t][i])
 	
 	column_comparison = []
+
 	for k,v in rules.items():
 		if(set(compare_values) <= set(v)):
 			column_comparison.append(k)	
@@ -89,9 +90,9 @@ for i in range(count):
 		if i+1 == len(new_rules[item]):
 			new_new_rules[item] = new_rules[item] 
 
-inter = []
 
 #id columns through process of elimination
+inter = []
 for k,v in new_new_rules.items():
 	set1 = set(v)
 	set2 = set(inter)
