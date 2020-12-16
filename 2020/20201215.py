@@ -13,10 +13,13 @@ irange = 30000000
 for i in range(len(num_list)):
 	uniques[int(num_list[i])] = ([i+1,i+1])
 
+#grab last value in list
 current = int(num_list[-1])
-last = 0
+
+#init where to start
 length = len(num_list)-1
 
+#crunch it
 for i in range(length,irange-1):
 	if current in uniques:
 		current = uniques[current][1]-uniques[current][0]
