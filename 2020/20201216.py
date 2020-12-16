@@ -81,7 +81,6 @@ for i in range(count):
 	compare_values = []
 
 
-
 #sorting the rules by length
 new_new_rules = {}
 
@@ -105,11 +104,11 @@ for k,v in new_new_rules.items():
 for k,v in new_new_rules.items():
 	new_rules[k] = new_new_rules[k]
 
-
+#yup, couldn't be bugggered to read this from the file.
 myticket = [127,83,79,197,157,67,71,131,97,193,181,191,163,61,53,89,59,137,73,167]
 
+#Find product of all values where the label is "departure"
 res = 1
-
 for k,v in new_new_rules.items():
 	if 'departure' in v[0]:
 		res = res * myticket[int(k)]
