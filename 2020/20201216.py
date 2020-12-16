@@ -34,7 +34,7 @@ for t in range(len(tickets_list)):
 	for i in range(len(tickets_list[t])):
 		if tickets_list[t][i] not in valid_range:
 			invalid+=tickets_list[t][i]
-print(invalid)
+print("Part 1: " + str(invalid))
 
 #Part 2
 
