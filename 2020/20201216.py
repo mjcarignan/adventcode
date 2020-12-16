@@ -54,5 +54,7 @@ for t in range(len(tickets_list)):
 for index in sorted(invalid_tickets, reverse=True):
     del tickets_list[index]
 
-
-
+# change each rule range to a list of values for that concatinated set of ranges.  
+# Should have done this earlier.  <facepalm>
+for k,v in rules.items():
+	rules[k] = list(chain(v[0],v[1]))
