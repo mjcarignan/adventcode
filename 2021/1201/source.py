@@ -24,8 +24,6 @@ windows = []
 for i in range(length-2):
     windows.append(depths[i]+depths[i+1]+depths[i+2])
 
-
-
 lastwindow = windows[0]
 for window in windows:
 
