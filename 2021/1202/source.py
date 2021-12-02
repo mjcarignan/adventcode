@@ -1,3 +1,5 @@
+#1202
+
 import time
 
 startTime = time.time()
@@ -37,6 +39,5 @@ for nav in navigations:
             aim-=int(nav[1])
 
 print("Part 2 answer: " + str(position*depth))
-
 
 print("Total time: %s milliseconds" % round((time.time() - startTime)*1000, 3))
