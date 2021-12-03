@@ -23,7 +23,6 @@ def find():
             values[i]+=int(bit)
             i+=1
         i = 0
-    i = 0
     highvalue = str()
     lowvalue = str()
     for bit in values:
@@ -33,7 +32,6 @@ def find():
         else:
             highvalue+="0"
             lowvalue+="1"
-        i+=1
     return [highvalue, lowvalue]
 
 v = find()
