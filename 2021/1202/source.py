@@ -1,13 +1,14 @@
 #1202
 
 import time
+import re
 
 startTime = time.time()
 
 
 #read file, get into useable format
 file = open('./2021/1202/inputfull.txt', 'r')
-navigations = [nav.strip().split(" ") for nav in file.readlines()]
+navigations = [re.split('\s', nav.strip()) for nav in file.readlines()]
 file.close()
 
 #part 1
