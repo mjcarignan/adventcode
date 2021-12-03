@@ -45,7 +45,6 @@ print("Part 1 answer: " + str(int(v[0], base=2)*int(v[1], base=2)))
 #part 2
 
 def findMostCommon(index, list):
-    #print(list)
     lengthOfList = len(list)
     value = 0
     for line in list:
@@ -73,8 +72,6 @@ while i in range(len(oxygen[0])) and len(oxygen)!=1:
     commonValue = findMostCommon(i,oxygen)
     oxygen = [line for line in oxygen if commonValue in line[i]] 
     i+=1
-    
-print(oxygen)
 
 i = 0
 
@@ -82,7 +79,6 @@ while i in range(len(co2[0])) and len(co2)!=1:
     leastCommonValue = findLeastCommon(i,co2)
     co2 = [line for line in co2 if leastCommonValue in line[i]] 
     i+=1
-    
 
 
 print("Part 2 answer: " + str(int(oxygen[0], base=2)*int(co2[0], base=2)))
