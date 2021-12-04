@@ -32,7 +32,6 @@ def checkIfBoardWinner(b):
     rowtest = False
 
     #check if row is empty
- #   print(b, boards[b])
     row = 0
     while row in range(len(boards[b])) and rowtest == False:
         rowtest = len(set(boards[b][row])) == 1
@@ -41,15 +40,6 @@ def checkIfBoardWinner(b):
     #check if column is empty
     row = 0
     col = 0
-
-    # test = ''
-    # while col in range(len(boards[b][0])) and coltest == False:
-    #     test = ''
-    #     while row in range(len(boards[b])):
-    #         test += boards[b][row][col]
-    #         row+=1
-    #     coltest = test == ''
-    #     col+=1
 
     while col in range(len(boards[b][0])) and coltest == False:
         values = set(ele[col] for ele in boards[b])
@@ -69,11 +59,11 @@ def findNumberInBoard(board,drawnNum):
     return True
 
 def calulateScore(b):
-    #loop through rows
-        #loop thru values in row adding non-blanks
+
+      
     sum = 0
-    for row in boards[b]:
-        for col in row:
+    for row in boards[b]: #loop through rows
+        for col in row:   #loop thru values in row adding non-blanks
             if col !='':
                 sum+=int(col)
     return sum
@@ -82,20 +72,15 @@ def calulateScore(b):
 #loop through drawn numbers while not board is a winning board
 i = 0
 b = 0
-winner = False
-numWinningBoard = int()
-drawnNum = int()
 winningBoards = []
 winingDraws = []
 while i in range(len(drawnNumbers)):
-    drawnNum = drawnNumbers[i] #find drawn number in each board
-    # print(drawnNum)
     while b in range(len(boards)):
         if b not in winningBoards:
-            findNumberInBoard(b,drawnNum) #remove occurances of drawn number
+            findNumberInBoard(b,drawnNumbers[i]) #remove occurances of drawn number
             if checkIfBoardWinner(b):
                 winningBoards.append(b)
-                winingDraws.append(drawnNum)
+                winingDraws.append(drawnNumbers[i])
         b+=1
     b=0
     i+=1
