@@ -89,4 +89,4 @@ print("First winning board: " + str(winningBoards[0]) + " with a score of " + st
 
 print("Last winning board: " + str(winningBoards[-1]) + " with a score of " + str((calulateScore(winningBoards[-1])*int(winingDraws[-1]))))
     
-
+print("Total time: %s milliseconds" % round((time.time() - startTime)*1000, 3))

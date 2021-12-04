@@ -5,6 +5,4 @@ print(result)
 
 
 
-   while col in range(len(boards[b][0])) and coltest == False:
-        coltest = len(set(ele[col] for ele in boards[b])) == 1
-        col+=1
+   
