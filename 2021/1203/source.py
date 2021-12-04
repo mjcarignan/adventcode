@@ -23,8 +23,10 @@ def find():
             values[i]+=int(bit)
             i+=1
         i = 0
+    
     highvalue = str()
     lowvalue = str()
+
     for bit in values:
         if int(bit) >= lengthOfFile/2:
             highvalue+="1"
@@ -46,8 +48,8 @@ def findMostCommon(index, list):
     lengthOfList = len(list)
     value = 0
     for line in list:
-            value+=int(line[index])
-    if value >= lengthOfList/2:
+            value+=int(line[index])  #summing the column of bits
+    if value >= lengthOfList/2: #check to see which is the most common value is either a 1 or 0
         return("1")
     else:
         return("0")
@@ -56,8 +58,8 @@ def findLeastCommon(index, list):
     lengthOfList = len(list)
     value = 0
     for line in list:
-            value+=int(line[index])
-    if value < lengthOfList/2:
+            value+=int(line[index]) #summing the column of bits
+    if value < lengthOfList/2: #check to see which is the least common value is either a 1 or 0
         return("1")
     else:
         return("0")
