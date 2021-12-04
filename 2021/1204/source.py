@@ -32,7 +32,7 @@ def checkIfBoardWinner(b):
     rowtest = False
 
     #check if row is empty
-    print(b, boards[b])
+ #   print(b, boards[b])
     row = 0
     while row in range(len(boards[b])) and rowtest == False:
         rowtest = len(set(boards[b][row])) == 1
@@ -86,21 +86,23 @@ winner = False
 numWinningBoard = int()
 drawnNum = int()
 winningBoards = []
-while i in range(len(drawnNumbers)) and winner == False:
-    drawnNum = drawnNumbers[i] #find drawnnumber in each board
-    print(drawnNum)
-    while b in range(len(boards)) and winner == False:
-        findNumberInBoard(b,drawnNum) #remove occurances of drawn number
-        winner = checkIfBoardWinner(b) # check if the board is a winner
-        if winner:
-            numWinningBoard = b
+winingDraws = []
+while i in range(len(drawnNumbers)):
+    drawnNum = drawnNumbers[i] #find drawn number in each board
+    # print(drawnNum)
+    while b in range(len(boards)):
+        if b not in winningBoards:
+            findNumberInBoard(b,drawnNum) #remove occurances of drawn number
+            if checkIfBoardWinner(b):
+                winningBoards.append(b)
+                winingDraws.append(drawnNum)
         b+=1
     b=0
     i+=1
-print()
-print(calulateScore(numWinningBoard))
-print(drawnNum)
-print("Winning board: " + str(numWinningBoard) + " with a score of " + str((calulateScore(numWinningBoard)*int(drawnNum))))
+print(winningBoards)
+print(winingDraws)
+print("First winning board: " + str(winningBoards[0]) + " with a score of " + str((calulateScore(winningBoards[0])*int(winingDraws[0]))))
 
+print("Last winning board: " + str(winningBoards[-1]) + " with a score of " + str((calulateScore(winningBoards[-1])*int(winingDraws[-1]))))
     
 
