@@ -84,8 +84,7 @@ while i in range(len(drawnNumbers)):
         b+=1
     b=0
     i+=1
-print(winningBoards)
-print(winingDraws)
+
 print("First winning board: " + str(winningBoards[0]) + " with a score of " + str((calulateScore(winningBoards[0])*int(winingDraws[0]))))
 
 print("Last winning board: " + str(winningBoards[-1]) + " with a score of " + str((calulateScore(winningBoards[-1])*int(winingDraws[-1]))))
