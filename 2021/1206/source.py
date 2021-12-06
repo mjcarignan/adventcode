@@ -11,6 +11,8 @@ file = open('./2021/1206/input.txt', 'r')
 school = [int(num) for num in file.read().split(',')]
 file.close()
 
+print(school)
+
 def modelFish(startingTimer, duration):
 #loop for the duration
     fish = [startingTimer]
@@ -21,6 +23,7 @@ def modelFish(startingTimer, duration):
                 fish.append(8)
                 fish[i]=6
             else: fish[i]-=1 # decriment the fish's timer to 0
+        print(len(fish))
     return len(fish)
             
 
@@ -30,14 +33,11 @@ def getCountofOffspring(duration):
     for i in range(9):
         print("Working on fish: " + str(i))
         reproductionModel[i] = modelFish(i,duration)
-    print(reproductionModel)
     return reproductionModel
 
-model = getCountofOffspring(256)
+model = getCountofOffspring(265)
 
 count= 0
 for fish in school:
     count+= model[fish]
 print(count)
-#loop through the starting school
-    #some the total of off-spring for each fish
