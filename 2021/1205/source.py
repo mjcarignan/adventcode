@@ -7,78 +7,87 @@ startTime = time.time()
 
 
 #read file, get into useable format
-file = open('./2021/1205/input_sample.txt', 'r')
+file = open('./2021/1205/input.txt', 'r')
 
 #for each line strip the \n character, collect all values that are not delimiters, and convert to integers
-ventsLines = [list(map(int, re.split(',| -> ', vent.strip()))) for vent in file.readlines()]
+ventsLines = [tuple(map(int, re.split(',| -> ', vent.strip()))) for vent in file.readlines()]
 file.close()
 
-#references for the coordinate lines
-x1position = 0
-x2position = 2
-y1position = 1
-y2position = 3
 
+#references for the coordinate tuples
+x1 = 0
+x2 = 2
+y1 = 1
+y2 = 3
 
-#Find all the lines that have the same x1 and x2 or the same y1 y2
+#find the edges of the map
+x_max = max(max([xS[x1] for xS in ventsLines]), max([xS[x2] for xS in ventsLines]))
+y_max = max(max([yS[y1] for yS in ventsLines]), max([yS[y2] for yS in ventsLines]))
 
-#Loop through the smaller list for each line
-straightVents = list()
-map = list()
+#create and initialize the map
+map = dict()
+row = [0 for x in range(x_max+1)]
+for y in range(y_max+1):
+    map[y] = row.copy()
 
-for vent in ventsLines:
-    if vent[x1position] == vent[x2position] or vent[y1position] == vent[y2position]:
-        straightVents.append(vent)
-
-
-
-
-# for each start and end point:
-for vent in straightVents:
-    # for the range of difference in x potions or y positions store the range of coordinate positions
-    if vent[x1position] == vent[x2position]:
-        if vent[y1position] < vent[y2position]:
-            start = vent[y1position]
-            end = vent[y2position]+1
+#get all the coordinate of the path of the vent
+def getLine(vent):
+    line = []
+    #is it a straight line along x?
+    if vent[x1] == vent[x2]:
+        if vent[y1] < vent[y2]:
+            start = vent[y1]
+            end = vent[y2]+1
         else: 
-            start = vent[y2position]
-            end = vent[y1position]+1
+            start = vent[y2]
+            end = vent[y1]+1
         y = start
+
+    #plot line with constant x value
         for y in range(start,end):
-            map.append([vent[x1position], y])
-        
-            
-    elif vent[y1position] == vent[y2position]:
-        if vent[x1position] < vent[x2position]:
-            start = vent[x1position]
-            end = vent[x2position]+1
+            line.append([vent[x1], y])  
+    
+    #is it a straight line along y?
+    elif vent[y1] == vent[y2]:
+        if vent[x1] < vent[x2]:
+            start = vent[x1]
+            end = vent[x2]+1
         else: 
-            start = vent[x2position]
-            end = vent[x1position]+1
+            start = vent[x2]
+            end = vent[x1]+1
         x = start
+    #plot line with constant y value
         for x in range(start, end):
-            map.append([x,vent[y1position]])     
-print("Finished Plotting.")
-print("Number of points: " + str(len(map)))
+            line.append([x,vent[y1]])
+    
+    #it is a diagonal line
+    else:
+        #initialize range of x
+        if vent[x1] < vent[x2]:
+            x_range = [i for i in range(vent[x1],vent[x2]+1)]
+        else: 
+            x_range = [i for i in range(vent[x1],vent[x2]-1,-1)]
 
-def checkio(data):
-    print("Starting to remove unique points: ")
-    a=[]
-    for point in data:
-        if data.count(point)>1:
-            a.append(point)
+        #initialize range of y 
+        if vent[y1] < vent[y2]:
+            y_range = [i for i in range(vent[y1],vent[y2]+1)]
+        else: 
+            y_range = [i for i in range(vent[y1],vent[y2]-1,-1)]
+        i = 0
+        for i in range(len(x_range)):
+            line.append([x_range[i],y_range[i]])
+    return line
 
+# plot each vent
+for vent in ventsLines:
+    line = getLine(vent)
+    for point in line:
+        map[point[0]][point[1]]+=1
 
-    b=[]
-    print("Starting to consolidate list: ")
-    for point in a:
-        if point not in b: 
-            b.append(point)
-    return b
+#Count the points where 2 or more vents cross
+count = 0
+for r in map:
+    count+= len([c for c in map[r] if c > 1])
 
-print(len(checkio(map)))
-
-    # remove unique values
-    # Convert to set to get the remaining values
-    # count the lenght of set 
-
+print("Number of points where more than one vent cross: " + str(count))
+print("Total time: %s milliseconds" % round((time.time() - startTime)*1000, 3))
