@@ -10,7 +10,7 @@ startTime = time.time()
 file = open('./2021/1204/numbers.txt', 'r')
 drawnNumbers = [num.strip() for num in file.read().split(',')]
 file.close()
-
+print(drawnNumbers)
 #readings the boards in to a dictionary
 file = open('./2021/1204/boards.txt', 'r')
 boardnumber = 0
