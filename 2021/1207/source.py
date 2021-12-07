@@ -12,7 +12,7 @@ list.sort()
 middleIndex = (len(list) - 1)//2
 s = 0
 for x in list:
-    s += abs(int(x)-list[middleIndex])
+    s += abs(x-list[middleIndex])
 print("Part 1: " + str(s))
 
 #part 2 find the middle of the list based on the weighted average of the values
