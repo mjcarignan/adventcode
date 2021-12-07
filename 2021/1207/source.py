@@ -20,9 +20,7 @@ weights = Counter(list)
 newmiddle = sum(list) // sum(weights.values())
 s = 0
 for x in list:
-    distance = abs(x-newmiddle)
-    i = 1
-    for i in range(distance+1):
-        s += i
+    s+=sum(range(1, abs(x-newmiddle)+1))
+
 print("Part 2: " + str(s))
 print("Total time: %s milliseconds" % round((time.time() - startTime)*1000, 3))
